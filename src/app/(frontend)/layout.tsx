@@ -1,10 +1,9 @@
 import React from 'react'
 import './styles.css'
-// import './globals.css'
 
 export const metadata = {
-  description: 'We build awesome website for awesome businesses',
-  title: "TechiDISE - Let's build",
+  description: 'Premium Hardcore Interracial BDSM Fetish Porn',
+  title: 'LIVE THICK | BBC + BDSM',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -12,7 +11,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body>
+      <body className="">
         <main>{children}</main>
       </body>
     </html>

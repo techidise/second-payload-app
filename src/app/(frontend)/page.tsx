@@ -1,3 +1,5 @@
+// AllAboutPayload Tutorial: [Video #7 | Auth - User SignUp <13:08> ]
+
 /**
  * @fileoverview Home page component that renders the landing page with dynamic blocks
  * @module HomePage
@@ -10,10 +12,9 @@ import config from '@/payload.config'
 // import Image from 'next/image'
 // import { fileURLToPath } from 'url'
 
-import HeroBlock from './components/HeroBlock'
-import ContentBlock from './components/ContentBlock'
-import NewsletterBlock from './components/NewsletterBlock'
-import MyFormComponent from './components/MyFormComponent'
+import HeroBlock from '../../components/component-blocks/HeroBlock'
+import ContentBlock from '../../components/component-blocks/ContentBlock'
+
 // import { Button } from '@/components/ui/button'
 
 /**
@@ -22,18 +23,16 @@ import MyFormComponent from './components/MyFormComponent'
  * @param {Page['layout'][0]} block - The block configuration from the page layout
  * @returns {JSX.Element | null} The rendered block component or null if type not recognized
  */
-// const renderBlock = (block: Page['layout'][0]) => {
-//   switch (block.blockType) {
-//     case 'hero':
-//       return <HeroBlock block={block} key={block.id} />
-//     case 'content':
-//       return <ContentBlock block={block} key={block.id} />
-//     case 'newsletter-form':
-//       return <NewsletterBlock block={block} key={block.id} />
-//     default:
-//       return null
-//   }
-// }
+const renderBlock = (block: Page['layout'][0]) => {
+  switch (block.blockType) {
+    case 'hero':
+      return <HeroBlock block={block} key={block.id} />
+    case 'content':
+      return <ContentBlock block={block} key={block.id} />
+    default:
+      return null
+  }
+}
 
 /**
  * HomePage component
@@ -66,10 +65,14 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="home">
-      <h1 className="text-6xl text-red-50">TechiDISE: Product Development and Design </h1>
-      <h3 className="text-2xl text-red-100">Contact Form</h3>
-      <MyFormComponent formId="6858a2df36eb3e52a3979cb9" />
+    <div className="flex flex-col justify-between items-center">
+      {/* {page.title} */}
+      <div className="">{page.layout?.map((block) => renderBlock(block))}</div>
+
+      {/* <h1 className="text-6xl text-red-50">TechiDISE: Product Development and Design </h1>
+      <h3 className="text-2xl text-red-100">Contact Form</h3> */}
+      {/* <MyFormComponent formId="6858a2df36eb3e52a3979cb9" /> */}
+      {/* <MyFormComponent formId="683f81618f6ab460fa7e6cff" /> */}
 
       {/* <h1 className="text-red-600 text-2xl">{page.title}</h1> */}
       {/* <p>{page.layout[0].heading}</p> */}

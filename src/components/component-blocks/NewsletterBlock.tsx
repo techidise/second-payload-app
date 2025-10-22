@@ -39,7 +39,7 @@ type FormState = {
  * @property { 'text' | 'email' | 'textarea' | 'number' | 'checkbox' | 'select' | 'country' | 'state'} blockType - Type of input field
  * @property { string } name - Field name identifier
  * @property { string | null } [label] - Optional label for the field
- * @property { boolean | null } [required - Optional flag indicating if field is required]
+ * @property { boolean | null } [required] - Optional flag indicating if field is required
  */
 
 type InputFormField = Extract<
@@ -149,11 +149,11 @@ export default function NewsletterBlock({ block }: { block: NewsletterProps }) {
   }
 
   return (
-    <div>
+    <div className="bg-red-200">
       {typeof block?.form === 'object' && block?.form?.title === 'newsletter-form-1' && (
         <div>
           <h2 className="text-amber-300">{block.heading}</h2>
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="bg-slate-700" onSubmit={handleSubmit}>
             {block.form.fields?.map((field) => {
               // only render input fields
               const inputField = field as InputFormField
@@ -166,21 +166,21 @@ export default function NewsletterBlock({ block }: { block: NewsletterProps }) {
                     type={inputField.blockType === 'email' ? 'email' : 'text'}
                     name={inputField.name}
                     required={inputField.required || false}
-                    placeholder={inputField.label}
+                    placeholder={inputField.label || ''}
+                    className="w-full p-10 rounded-full border-4 bg-amber-300"
                   />
                 </div>
               )
             })}
             {/* display error or success message */}
-            {formState.error && <p>{formState.error}</p>}
+            {formState.error && <p className="text-red-500">{formState.error}</p>}
             {formState.success ? (
-              <div>
+              <div className="text-green-400">
                 <RichText data={block.form.confirmationMessage!} />
               </div>
             ) : (
               <button type="submit">{block.form.submitButtonLabel || 'Submit'}</button>
             )}
-            <button type="submit">{block.form.submitButtonLabel || 'Submit'}</button>
           </form>
         </div>
       )}
