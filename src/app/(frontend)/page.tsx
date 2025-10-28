@@ -1,83 +1,75 @@
-// AllAboutPayload Tutorial: [Video #7 | Auth - User SignUp <13:08> ]
+// AllAboutPayload Tutorial: [Video #8 | Logout - <04:02> ]
 
-/**
- * @fileoverview Home page component that renders the landing page with dynamic blocks
- * @module HomePage
- */
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { ReactElement } from 'react'
 
-import { getPayload } from 'payload'
-import { Page } from '@/payload-types'
-// import { headers as getHeaders } from 'next/headers.js'
-import config from '@/payload.config'
-// import Image from 'next/image'
-// import { fileURLToPath } from 'url'
-
-import HeroBlock from '../../components/component-blocks/HeroBlock'
-import ContentBlock from '../../components/component-blocks/ContentBlock'
-
-// import { Button } from '@/components/ui/button'
-
-/**
- * Renders a block based on its type from the page layout
- *
- * @param {Page['layout'][0]} block - The block configuration from the page layout
- * @returns {JSX.Element | null} The rendered block component or null if type not recognized
- */
-const renderBlock = (block: Page['layout'][0]) => {
-  switch (block.blockType) {
-    case 'hero':
-      return <HeroBlock block={block} key={block.id} />
-    case 'content':
-      return <ContentBlock block={block} key={block.id} />
-    default:
-      return null
-  }
-}
-
-/**
- * HomePage component
- * Fetches and renders the landing page content from Payload CMS
- * Supports multiple block types: hero, content, and newsletter form
- *
- * @component
- * @async
- * @returns {Promise<JSX.Element>} The rendered home page
- */
-export default async function HomePage() {
-  // const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  // const { user } = await payload.auth({ headers })
-
-  // const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
-
-  const {
-    docs: [page],
-  } = await payload.find({
-    collection: 'pages',
-    where: {
-      slug: { equals: 'landing-page' },
-    },
-  })
-
-  if (!page) {
-    return <div>Page Not Found</div>
-  }
-
+const Home = (): ReactElement => {
   return (
-    <div className="flex flex-col justify-between items-center">
-      {/* {page.title} */}
-      <div className="">{page.layout?.map((block) => renderBlock(block))}</div>
+    <main className="flex flex-col min-h-screen min-w-screen">
+      <header className="py-16 border-b border-gray-700">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-4">Learn Payload CMS</h1>
+          <p className="text-lg mb-6 text-gray-400">
+            Build modern applications with our Payload CMS course.
+          </p>
+          <Button asChild>
+            <Link
+              href={'/signup'}
+              className="px-6 py-2 border border-white hover:bg-white hover:text-black transition"
+            >
+              Get Started
+            </Link>
+          </Button>
+        </div>
+      </header>
 
-      {/* <h1 className="text-6xl text-red-50">TechiDISE: Product Development and Design </h1>
-      <h3 className="text-2xl text-red-100">Contact Form</h3> */}
-      {/* <MyFormComponent formId="6858a2df36eb3e52a3979cb9" /> */}
-      {/* <MyFormComponent formId="683f81618f6ab460fa7e6cff" /> */}
+      {/* Features Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Why Choose Us?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 bg-gray-950 border border-gray-700 rounded hover:bg-gray-800 transition">
+              <h3 className="text-xl font-bold mb-2">Practical Learning</h3>
+              <p className="text-gray-400">
+                Work on real-world projects and build hands-on experience.
+              </p>
+            </div>
+            <div className="p-6 bg-gray-950 border border-gray-700 rounded hover:bg-gray-800 transition">
+              <h3 className="text-xl font-bold mb-2">Modern Techniques</h3>
+              <p className="text-gray-400">
+                Stay ahead with up-to-date content and best practices.
+              </p>
+            </div>
+            <div className="p-6 bg-gray-950 border border-gray-700 rounded hover:bg-gray-800 transition">
+              <h3 className="text-xl font-bold mb-2">Community Support</h3>
+              <p className="text-gray-400">
+                Join a network of developers sharing tips and resources.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* <h1 className="text-red-600 text-2xl">{page.title}</h1> */}
-      {/* <p>{page.layout[0].heading}</p> */}
-      {/* <pre>{JSON.stringify(page.layout[0], null, 2)}</pre> */}
-      {/* <div className="page">{page.layout?.map((block) => renderBlock(block))}</div> */}
-    </div>
+      {/* Call-to-Action Section */}
+      <section className="py-16 border-t border-gray-700">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Dive In?</h2>
+          <p className="text-gray-400 mb-6">
+            Take the first step towards mastering Payload CMS today.
+          </p>
+          <Button asChild>
+            <Link
+              href={'/signup'}
+              className="px-6 py-2 border border-white hover:bg-white hover:text-black transition"
+            >
+              Enroll Now
+            </Link>
+          </Button>
+        </div>
+      </section>
+    </main>
   )
 }
+
+export default Home

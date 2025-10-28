@@ -15,7 +15,7 @@ const SubmitButton = ({ loading, text }: LoadingProp): ReactElement => {
       size="lg"
       variant="outline"
       disabled={loading}
-      className="w-full cursor-pointer mt-5"
+      className="w-full hover:cursor-pointer mt-5"
     >
       <Spinner className={`${loading ? 'block' : 'hidden'}`} /> {text}
     </Button>

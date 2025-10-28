@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import LoginForm from './components/LoginForm'
+import LoginForm from './_components/LoginForm'
 
 const Login = async (): Promise<ReactElement> => {
   return (

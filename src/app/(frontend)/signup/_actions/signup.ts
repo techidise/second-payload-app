@@ -1,3 +1,5 @@
+'use server'
+
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { Customer } from '@/payload-types'
@@ -48,9 +50,11 @@ export const Signup = async ({ email, password }: SignupParams): Promise<SignupR
       })
       return { success: true }
     } else {
+      console.log('Login failed: No token received')
       return { success: false, error: 'Login Failed' }
     }
   } catch (error) {
+    console.log(error)
     return { success: false, error: 'Signup Failed' }
   }
 }

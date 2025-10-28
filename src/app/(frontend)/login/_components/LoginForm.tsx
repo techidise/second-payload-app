@@ -19,7 +19,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 
 import SubmitButton from '@/components/misc/SubmitButton'
-import { login, LoginResponse } from '../actions/login'
+import { login, LoginResponse } from '../_actions/login'
 
 const LoginForm = (): ReactElement => {
   const [isPending, setIsPending] = useState(false)
