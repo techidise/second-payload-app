@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
-import NavBarMenu from '@/components/misc/NavBar'
-import Footer from '@/components/misc/Footer'
+import NavBarMenu from '@/components/misc/NavBarNotLoggedIn'
+import Footer from '@/components/misc/FooterNotLoggedIn'
 
 export const metadata = {
   description: 'Premium Hardcore Interracial BDSM Fetish Porn',
@@ -15,9 +15,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body className="">
         <main>
-          <NavBarMenu />
+          {/* <NavBarMenu /> */}
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </main>
       </body>
     </html>

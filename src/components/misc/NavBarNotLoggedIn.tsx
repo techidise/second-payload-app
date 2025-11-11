@@ -10,7 +10,7 @@ import {
   NavigationMenuList,
 } from '@/components/ui/navigation-menu'
 
-const NavBarMenu = () => {
+const NavBarNotLoggedIn = () => {
   //   const isMobile = useIsMobile()
 
   return (
@@ -37,4 +37,4 @@ const NavBarMenu = () => {
   )
 }
 
-export default NavBarMenu
+export default NavBarNotLoggedIn

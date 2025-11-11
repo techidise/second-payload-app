@@ -73,6 +73,7 @@ export interface Config {
     pages: Page;
     customers: Customer;
     cars: Car;
+    courses: Course;
     forms: Form;
     'form-submissions': FormSubmission;
     'payload-locked-documents': PayloadLockedDocument;
@@ -86,6 +87,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     customers: CustomersSelect<false> | CustomersSelect<true>;
     cars: CarsSelect<false> | CarsSelect<true>;
+    courses: CoursesSelect<false> | CoursesSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -455,6 +457,28 @@ export interface Car {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses".
+ */
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  image: string | Media;
+  curriculum?:
+    | {
+        title: string;
+        duration: string;
+        video: string | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'video';
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
@@ -497,6 +521,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'cars';
         value: string | Car;
+      } | null)
+    | ({
+        relationTo: 'courses';
+        value: string | Course;
       } | null)
     | ({
         relationTo: 'forms';
@@ -658,6 +686,30 @@ export interface CustomersSelect<T extends boolean = true> {
 export interface CarsSelect<T extends boolean = true> {
   title?: T;
   featuredImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses_select".
+ */
+export interface CoursesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
+  curriculum?:
+    | T
+    | {
+        video?:
+          | T
+          | {
+              title?: T;
+              duration?: T;
+              video?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }

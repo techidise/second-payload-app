@@ -1,12 +1,16 @@
-// AllAboutPayload Tutorial: [Video #8 | Logout - <04:02> ]
+// AllAboutPayload Tutorial: [Video #9 | "Data Structures" - <11:04> ]
 
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 
+import NavBarNotLoggedIn from '@/components/misc/NavBarNotLoggedIn'
+import FooterNotLoggedIn from '@/components/misc/FooterNotLoggedIn'
+
 const Home = (): ReactElement => {
   return (
     <main className="flex flex-col min-h-screen min-w-screen">
+      <NavBarNotLoggedIn />
       <header className="py-16 border-b border-gray-700">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">Learn Payload CMS</h1>
@@ -68,6 +72,7 @@ const Home = (): ReactElement => {
           </Button>
         </div>
       </section>
+      <FooterNotLoggedIn />
     </main>
   )
 }

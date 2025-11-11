@@ -1,7 +1,8 @@
 import React, { FC, ReactNode } from 'react'
 import { redirect } from 'next/navigation'
 
-import { getUser } from './actions/getUser'
+import { getUser } from './_actions/getUser'
+import NavBar from './_components/NavBar'
 
 interface LayoutProps {
   children: ReactNode
@@ -13,7 +14,12 @@ const Layout: FC<LayoutProps> = async ({ children }) => {
     redirect('/login')
     return null
   }
-  return <>{children}</>
+  return (
+    <div>
+      <NavBar />
+      {children}
+    </div>
+  )
 }
 
 export default Layout
