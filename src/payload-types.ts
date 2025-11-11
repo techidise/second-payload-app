@@ -74,6 +74,7 @@ export interface Config {
     customers: Customer;
     cars: Car;
     courses: Course;
+    participation: Participation;
     forms: Form;
     'form-submissions': FormSubmission;
     'payload-locked-documents': PayloadLockedDocument;
@@ -88,6 +89,7 @@ export interface Config {
     customers: CustomersSelect<false> | CustomersSelect<true>;
     cars: CarsSelect<false> | CarsSelect<true>;
     courses: CoursesSelect<false> | CoursesSelect<true>;
+    participation: ParticipationSelect<false> | ParticipationSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -465,15 +467,44 @@ export interface Course {
   description: string;
   image: string | Media;
   curriculum?:
-    | {
-        title: string;
-        duration: string;
-        video: string | Media;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'video';
-      }[]
+    | (
+        | {
+            title: string;
+            duration: string;
+            video: string | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            title: string;
+            questions: {
+              questions: string;
+              answers: {
+                answer: string;
+                correct: boolean;
+                id?: string | null;
+              }[];
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quiz';
+          }
+      )[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "participation".
+ */
+export interface Participation {
+  id: string;
+  customer: string | Customer;
+  course: string | Course;
+  progress?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -525,6 +556,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'courses';
         value: string | Course;
+      } | null)
+    | ({
+        relationTo: 'participation';
+        value: string | Participation;
       } | null)
     | ({
         relationTo: 'forms';
@@ -709,7 +744,38 @@ export interface CoursesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        quiz?:
+          | T
+          | {
+              title?: T;
+              questions?:
+                | T
+                | {
+                    questions?: T;
+                    answers?:
+                      | T
+                      | {
+                          answer?: T;
+                          correct?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "participation_select".
+ */
+export interface ParticipationSelect<T extends boolean = true> {
+  customer?: T;
+  course?: T;
+  progress?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,3 +1,4 @@
+import { QuizBlock } from '@/blocks/courses/QuizBlock'
 import { VideoBlock } from '@/blocks/courses/VideoBlock'
 import { CollectionConfig } from 'payload'
 
@@ -30,7 +31,7 @@ export const Courses: CollectionConfig = {
       name: 'curriculum',
       label: 'Curriculum',
       type: 'blocks',
-      blocks: [VideoBlock],
+      blocks: [VideoBlock, QuizBlock],
     },
   ],
 }
