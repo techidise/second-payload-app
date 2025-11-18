@@ -4,11 +4,11 @@ import { redirect } from 'next/navigation'
 import { getUser } from './_actions/getUser'
 import NavBar from './_components/NavBar'
 
-interface LayoutProps {
+interface TemplateProps {
   children: ReactNode
 }
 
-const Layout: FC<LayoutProps> = async ({ children }) => {
+const Template: FC<TemplateProps> = async ({ children }) => {
   const user = await getUser()
   if (!user) {
     redirect('/login')
@@ -22,4 +22,4 @@ const Layout: FC<LayoutProps> = async ({ children }) => {
   )
 }
 
-export default Layout
+export default Template

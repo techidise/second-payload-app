@@ -1,4 +1,4 @@
-// AllAboutPayload Tutorial: [Video #9 | "Data Structures" - <11:04> ]
+// AllAboutPayload Tutorial: [Video #12 | "Participating in Course" - <00:00> ]
 
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
