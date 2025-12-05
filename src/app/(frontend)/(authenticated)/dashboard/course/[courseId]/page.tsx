@@ -1,12 +1,14 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { getUser } from '../../../_actions/getUser'
-import { Course } from '@/payload-types'
+import { Course, Participation } from '@/payload-types'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowBigLeftDashIcon, Pencil, Sheet, Video } from 'lucide-react'
 import Image from 'next/image'
+import StartCourseButton from './_components/StartCourseButton'
+import { equal } from 'assert'
 
 const CoursePage = async ({ params }: { params: { courseId: string } }) => {
   const { courseId } = await params
@@ -33,6 +35,28 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
 
   if (!course) {
     return notFound()
+  }
+
+  let participation: Participation | null = null
+
+  try {
+    const participationRes = await payload.find({
+      collection: 'participation',
+      where: {
+        course: {
+          equals: courseId,
+        },
+        customer: {
+          equals: user?.id,
+        },
+      },
+      overrideAccess: false,
+      user: user,
+    })
+
+    participation = participationRes?.docs[0] || null
+  } catch (err) {
+    console.error(err)
   }
 
   return (
@@ -91,6 +115,8 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
           })}
         </div>
       </div>
+
+      {participation ? <div>Resume</div> : <StartCourseButton courseId={course.id} />}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-// AllAboutPayload Tutorial: [Video #12 | "Participating in Course" - <00:00> ]
+// AllAboutPayload Tutorial: [Video #13 | "Adding Resume to the dashboard" - <08:22> ]
 
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
