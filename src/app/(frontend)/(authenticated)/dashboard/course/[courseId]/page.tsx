@@ -9,6 +9,7 @@ import { ArrowBigLeftDashIcon, Pencil, Sheet, Video } from 'lucide-react'
 import Image from 'next/image'
 import StartCourseButton from './_components/StartCourseButton'
 import { equal } from 'assert'
+import ResumeButton from './_components/ResumeButton'
 
 const CoursePage = async ({ params }: { params: { courseId: string } }) => {
   const { courseId } = await params
@@ -116,7 +117,13 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
         </div>
       </div>
 
-      {participation ? <div>Resume</div> : <StartCourseButton courseId={course.id} />}
+      {participation ? (
+        <div className="w-72">
+          <ResumeButton participation={participation} />
+        </div>
+      ) : (
+        <StartCourseButton courseId={course.id} />
+      )}
     </div>
   )
 }

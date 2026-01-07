@@ -1,4 +1,4 @@
-// AllAboutPayload Tutorial: [Video #13 | "Adding Resume to the dashboard" - <08:22> ]
+// AllAboutPayload Tutorial: [Video #14 | "Setting up Curriclum Component" - <05:27> ]
 
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
