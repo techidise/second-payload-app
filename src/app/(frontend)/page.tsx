@@ -1,4 +1,4 @@
-// AllAboutPayload Tutorial: [Video #14 | "Setting up Curriclum Component" - <05:27> ]
+// AllAboutPayload Tutorial: [Video #15 | "Video Module and update Course Progress" - <00:01> ]
 
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'

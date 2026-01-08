@@ -5,6 +5,7 @@ import { Participation } from '@/payload-types'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowBigLeftIcon } from 'lucide-react'
+import CourseViewer from './_components/CourseViewer'
 
 const ParticipationPage = async ({ params }: { parmas: { participationId: string } }) => {
   const payload = await getPayload({ config: configPromise })
@@ -43,7 +44,7 @@ const ParticipationPage = async ({ params }: { parmas: { participationId: string
         Back to Dashboard
       </Link>
 
-      {/* {participation.course.title} */}
+      <CourseViewer participation={participation} />
     </div>
   )
 }
